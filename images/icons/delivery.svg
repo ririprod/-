@@ -1,0 +1,35 @@
+<!-- coin-delivery-clear.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Фон -->
+  <rect width="100%" height="100%" fill="#11120f"></rect>
+
+  <!-- Градиент -->
+  <defs>
+    <radialGradient id="grad" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#2b2b2b"></stop>
+      <stop offset="60%" stop-color="#11120f"></stop>
+      <stop offset="100%" stop-color="#000"></stop>
+    </radialGradient>
+  </defs>
+
+  <!-- Монета -->
+  <circle cx="50" cy="50" r="46" fill="url(#grad)" stroke="#ffffff33" stroke-width="4"></circle>
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff22" stroke-width="2"></circle>
+
+  <!-- Иконка: грузовик + метка -->
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Корпус грузовика -->
+    <rect x="28" y="44" width="24" height="14" rx="2"></rect>
+    <!-- Кабина -->
+    <path d="M52 46h9l7 7v5H52z"></path>
+    <!-- Колёса -->
+    <circle cx="36" cy="62" r="3.5" fill="#ffffff"></circle>
+    <circle cx="66" cy="62" r="3.5" fill="#ffffff"></circle>
+  </g>
+
+  <!-- Геометка (над машиной) -->
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 28a6 6 0 0 1 6 6c0 4-6 10-6 10s-6-6-6-10a6 6 0 0 1 6-6z"></path>
+    <circle cx="50" cy="34" r="2.2" fill="#ffffff"></circle>
+  </g>
+</svg>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SigLab</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/catalog.css" />
+
+    <script>
+      // Проверяем localStorage до загрузки HTML
+      const isAdult = localStorage.getItem("isAdult");
+
+      // Если пользователь уже подтвердил возраст — добавляем класс "no-popup"
+      if (isAdult === "true") {
+        document.documentElement.classList.add("no-popup");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="age-popup">
+      <div class="age-popup-content">
+        <h2>Сайт SigaUa призначений лише для повнолітніх користувачів</h2>
+        <p class="age-warning-text">
+          Вам має бути не менше <strong>18 років</strong> для перегляду
+          тютюнової продукції.
+        </p>
+        <div class="age-buttons">
+          <button class="yes-btn" onclick="confirmAge(true)">
+            Так, мені 18+
+          </button>
+          <button class="no-btn" onclick="confirmAge(false)">Ні</button>
+        </div>
+        <p class="age-footer">Куріння шкодить вашому здоров’ю.</p>
+      </div>
+    </div>
+
+    <!-- Header -->
+
+    <header class="header">
+      <div class="container">
+        <!-- Логотип -->
+        <a href="#top" class="logo header-logo">SigLub</a>
+
+        <!-- Десктопная навигация -->
+        <nav class="header-nav">
+          <ul>
+            <li><a href="#catalog">Каталог</a></li>
+            <li><a href="#about">Про нас</a></li>
+            <li><a href="#questions">Питання</a></li>
+          </ul>
+        </nav>
+
+        <!-- Кнопка связи -->
+        <div class="connection__links">
+          <a href="#" class="cart-btn">
+            <img src="./images/icons/cart.svg" alt="" />
+            Кошик</a
+          >
+        </div>
+
+        <!-- Кнопка мобильного меню -->
+        <button class="mobile-menu-btn" onclick="toggleMenu()">Меню</button>
+      </div>
+    </header>
+
+    <!-- Оверлей -->
+    <div class="overlay" onclick="closeMenu()"></div>
+
+    <!-- Боковое меню -->
+    <div class="side-menu">
+      <div class="side-menu-header">
+        <span>Меню</span>
+        <button class="close-btn" onclick="closeMenu()">&#10005;</button>
+      </div>
+
+      <div class="side-menu-content">
+        <ul>
+          <li><a href="#catalog" onclick="closeMenu()">Каталог</a></li>
+          <li><a href="#about" onclick="closeMenu()">Про нас</a></li>
+          <li><a href="#questions" onclick="closeMenu()">Питання</a></li>
+        </ul>
+      </div>
+
+      <div class="side-menu-actions">
+        <a href="#" class="side-cart-btn" onclick="closeMenu()">Telegram</a>
+      </div>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        const menu = document.querySelector(".side-menu");
+        const overlay = document.querySelector(".overlay");
+
+        menu.classList.add("active");
+        overlay.classList.add("active");
+      }
+
+      function closeMenu() {
+        const menu = document.querySelector(".side-menu");
+        const overlay = document.querySelector(".overlay");
+
+        menu.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    </script>
+
+    <main class="main">
+      <!-- Welcome -->
+      <section id="top" class="welcome">
+        <div class="blur"></div>
+        <div class="container">
+          <div class="welcome__desc">
+            <h1 class="title welcome__title">
+              Купити сигарети онлайн — дешево, швидко, з доставкою по Україні -
+              SigaUa
+            </h1>
+            <p class="welcome__text">
+              Сигарети в блоках — легко і зручно. Пишіть з 9:00 до 18:00.
+            </p>
+
+            <div class="social-btn__wrapper">
+              <a href="" class="social-btn" title="Viber">
+                <img src="./images/social/viber.svg" alt="Viber" />
+              </a>
+              <a href="#" class="social-btn" title="Telegram">
+                <img src="./images/social/telegram.svg" alt="Telegram" />
+              </a>
+              <a href="#" class="social-btn" title="WhatsApp">
+                <img src="./images/social/whatsapp.svg" alt="WhatsApp" />
+              </a>
+            </div>
+          </div>
+          <div class="welcome-image">
+            <img src="./images/hero/hero.png" alt="Сигарети" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION catalog -->
+
+      <section id="catalog" class="catalog-section">
+        <div class="container">
+          <h2 class="catalog-title">Каталог</h2>
+          <div class="catalog-bar">
+            <!-- Поиск -->
+            <div class="catalog-search">
+              <input
+                id="searchInput"
+                class="search-input"
+                type="text"
+                placeholder="Пошук товарів..."
+              />
+              <button id="searchBtn" class="search-btn">Пошук</button>
+            </div>
+
+            <!-- Фильтры -->
+            <div class="catalog-filters">
+              <select>
+                <option>Країна</option>
+                <option>Україна</option>
+                <option>Польща</option>
+              </select>
+              <select>
+                <option>Ціна</option>
+                <option>&lt; 500</option>
+                <option>500–1000</option>
+              </select>
+              <select>
+                <option>Розмір</option>
+                <option>King Size</option>
+              </select>
+              <select>
+                <option>Бренд</option>
+                <option>Marlboro</option>
+                <option>Winston</option>
+                <option>LD</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="products">
+        <div class="container">
+          <div class="product-card">
+            <img
+              src="./images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button class="btn__wrapper btn-info">Про товар</button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="./images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button class="btn__wrapper btn-info">Про товар</button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="../images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button class="btn__wrapper btn-info">Про товар</button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="./images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button class="btn__wrapper btn-info">Про товар</button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="./images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button class="btn__wrapper btn-info">Про товар</button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="./images/products/sample.jpg"
+              alt="#"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-name">
+                Lucky Strike <span class="product-price">150₴</span>
+              </h3>
+              <p class="product-subtitle">Blue edition</p>
+              <div class="products-buttons">
+                <button
+                  class="btn__wrapper btn-info"
+                  data-title="Lucky Strike"
+                  data-price="150₴"
+                  data-subtitle="Blue edition"
+                  data-description="Це класичні сигарети Lucky Strike з насиченим смаком. Виробник — США."
+                  data-image="./images/products/sample.jpg"
+                >
+                  Про товар
+                </button>
+                <button class="btn__wrapper btn-cart">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- popup product -->
+
+          <div class="about_product_popup" id="about_product_popup">
+            <div class="product__popup_content">
+              <span class="product_popup-close">&times;</span>
+
+              <img
+                class="popup_image"
+                src="./images/products/sample.jpg"
+                alt="Product Image"
+              />
+
+              <div class="popup_info">
+                <h2 class="popup_title">Lucky Strike</h2>
+                <p class="popup_variant">Blue</p>
+                <p class="popup_description">
+                  Lucky Strike Blue — это легкий табачный вкус с нотками ментола
+                  и свежести. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, eos, dignissimos commodi temporibus aliquid fugiat praesentium culpa eaque, corrupti recusandae quo dolore adipisci saepe doloremque quos veritatis. Saepe eveniet eum molestias architecto ipsam vitae exercitationem. Dolores atque veniam sit totam!
+                </p>
+                <button class="add_to_cart-btn">Додати в кошик</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagination">
+            <button class="page-btn prev" disabled>&lt;</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn next">&gt;</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="info-section">
+        <div class="container">
+          <div class="info-content">
+            <span class="info-subtitle">SigLab</span>
+            <h4 class="info-title">Сигарети оптом в Україні дешево</h4>
+            <p class="info-text">
+              Купити сигарети дешево поблочно або оптом з доставкою по всій
+              Україні можна у нас. Широкий вибір тютюнової продукції за
+              доступними цінами без посередників. Ми працюємо напряму з
+              постачальниками, що дозволяє утримувати найкращі ціни на ринку.
+              <strong>Досвід і надійність —</strong> продаємо сигарети блоками
+              вже багато років. <strong>Вигідні умови —</strong> низькі ціни без
+              зайвих націнок. <strong>Швидка доставка —</strong> відправляємо
+              замовлення по всій Україні.
+              <strong>Гарантія якості —</strong> співпрацюємо лише з
+              перевіреними брендами.
+            </p>
+            <p class="info-select">
+              Вибирайте <strong>SigaUa</strong> – вашого надійного партнера у
+              світі якісних сигарет!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits">
+        <div class="container">
+          <h4 class="benefits-header">Наші переваги</h4>
+          <div class="benefits-cards">
+            <div class="benefits-list">
+              <img src="./images/icons/uah.svg" alt="" class="betefints-img" />
+              <h5 class="benefits-title">Низькі ціни на сигарети</h5>
+              <p class="benefits-desc">
+                Продаємо блоками від постачальників — без націнок
+              </p>
+            </div>
+
+            <div class="benefits-list">
+              <img
+                src="./images/icons/setings.svg"
+                alt=""
+                class="betefints-img"
+              />
+              <h5 class="benefits-title">Широкий вибір сигарет</h5>
+              <p class="benefits-desc">
+                Асортимент популярних марок і форматів на будь-який смак
+              </p>
+            </div>
+
+            <div class="benefits-list">
+              <img
+                src="./images/icons/delivery.svg"
+                alt=""
+                class="betefints-img"
+              />
+              <h5 class="benefits-title">Доставка по всій Україні</h5>
+              <p class="benefits-desc">
+                Швидка і зручна доставка у ваше місто. Без затримок
+              </p>
+            </div>
+
+            <div class="benefits-list">
+              <img
+                src="./images/icons/garant.svg"
+                alt=""
+                class="betefints-img"
+              />
+              <h5 class="benefits-title">Гарантія якості продукції</h5>
+              <p class="benefits-desc">
+                Тільки оригінальні сигарети від перевірених постачальників.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="questions" class="accordion-sec">
+        <div class="container">
+          <h5 class="accordion-text">Часті запитання</h5>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header">
+                Як оформити замовлення на сигарети?
+              </div>
+              <div class="accordion-content">
+                <ul>
+                  <li>
+                    Виберіть продукцію — додайте потрібні блоки сигарет у кошик.
+                  </li>
+                  <li>
+                    Перехід в Telegram — після вибору система автоматично
+                    перенаправить вас в наш Telegram-канал.
+                  </li>
+                  <li>
+                    Оформлення замовлення — надішліть скріншот кошика або
+                    напишіть назву та кількість товару в Telegram: @###.
+                  </li>
+                  <li>
+                    Підтвердження та доставка — наш менеджер зв'яжеться з вами
+                    для уточнення деталей.
+                  </li>
+                  <li>Швидке оформлення — купівля сигарет в один клік!</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">Як відбувається доставка</div>
+              <div class="accordion-content">
+                <ul>
+                  <li>
+                    Ми доставляємо сигарети по всій Україні через Нову Пошту та
+                    інші служби.
+                  </li>
+                  <li>Відправлення замовлень — щодня.</li>
+                  <li>Термін доставки: від 1 до 3 днів залежно від регіону.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                Чи є доставка сигарет по всій Україні?
+              </div>
+              <div class="accordion-content">
+                <ul>
+                  <li>
+                    Так, ми доставляємо сигарети по всій Україні: Київ, Одеса,
+                    Львів, Дніпро, Харків та інші міста.
+                  </li>
+                  <li>Працюємо з Новою Поштою та іншими службами.</li>
+                  <li>
+                    Відправлення — щодня, термін доставки — від 1 до 3 днів.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                Як швидко ви доставляєте в Одесу / Київ / Львів?
+              </div>
+              <div class="accordion-content">
+                <ul>
+                  <li>Доставка по великих містах — протягом 1–2 днів.</li>
+                  <li>У всіх містах доступна кур'єрська доставка.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                Чи можна замовити сигарети оптом через Telegram?
+              </div>
+              <div class="accordion-content">
+                <ul>
+                  <li>
+                    Так, для швидкого оформлення замовлення напишіть нам у
+                    Telegram: @###.
+                  </li>
+                  <li>
+                    Ми уточнимо наявність, підберемо найкращі ціни та оформимо
+                    замовлення за кілька кліків.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">Оптові замовлення сигарет</div>
+              <div class="accordion-content">
+                <ul>
+                  <li>
+                    Якщо ви хочете купити сигарети оптом — пропонуємо гнучкі
+                    умови та вигідні ціни:
+                  </li>
+                  <li>Спеціальні пропозиції для постійних клієнтів</li>
+                  <li>Можливість замовити великі партії від 2 блоків</li>
+                  <li>Швидка доставка по Україні</li>
+                  <li>Для зв'язку використовуйте Telegram: @###</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="container footer__container">
+        <div class="footer-left">
+          <h3 class="logo footer-logo">SigLub</h3>
+          <p class="footer-text">
+            SigaUa — купити сигарети поблочно оптом і в роздріб в Україні за
+            найкращими цінами — можна тільки у нас.
+          </p>
+
+          <div class="footer__socials">
+            <a href="#" class="footer__social" title="Viber">
+              <img src="./images/social/viber.svg" alt="Viber" />
+            </a>
+            <a href="#" class="footer__social" title="WhatsApp">
+              <img src="./images/social/whatsapp.svg" alt="WhatsApp" />
+            </a>
+            <a href="#" class="footer__social" title="Telegram">
+              <img src="./images/social/telegram.svg" alt="Telegram" />
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-rigth">
+          <h3 class="footer-title">Доставка по всій Україні</h3>
+          <div class="footer__cities">
+            <a href="#" class="footer__city-row">Київ</a>
+            <a href="#" class="footer__city-row">Харків</a>
+            <a href="#" class="footer__city-row">Дніпро</a>
+            <a href="#" class="footer__city-row">Львів</a>
+            <a href="#" class="footer__city-row">Житомир</a>
+            <a href="#" class="footer__city-row">Вся Україна</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./scripts/age_popup.js"></script>
+    <script src="./scripts/accordion.js"></script>
+    <script src="./scripts/about_popup.js"></script>
+    <script src="./scripts/pagination.js"></script>
+  </body>
+</html>
